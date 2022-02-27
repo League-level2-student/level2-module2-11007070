@@ -11,7 +11,11 @@ public class LeagueSnake extends PApplet {
      * 
      * Put all the game variables here.
      */
-    
+    Segment segment;
+    int foodX;
+    int foodY;
+    int direction = UP;
+    int pieces;
 
     
     /*
@@ -21,17 +25,20 @@ public class LeagueSnake extends PApplet {
      */
     @Override
     public void settings() {
-        
+        size(500,500);
     }
 
     @Override
     public void setup() {
-        
+        segment = new Segment(250,250);
+        frameRate(20);
+        dropFood();
     }
 
     void dropFood() {
         // Set the food in a new random location
-        
+    	foodX = ((int)random(50)*10);
+    	foodY = ((int)random(50)*10);
     }
 
     /*
@@ -42,16 +49,21 @@ public class LeagueSnake extends PApplet {
 
     @Override
     public void draw() {
-        
+        background(101,205,111);
+        drawFood();
+        drawSnake();
     }
 
     void drawFood() {
         // Draw the food
-        
+    	fill(160,15,247);
+        rect(foodX, foodY, 10, 10);
     }
 
     void drawSnake() {
         // Draw the head of the snake followed by its tail
+    	fill(220,21,21);
+    	rect(segment.x, segment.y, 20, 20);
     }
 
     void drawTail() {
@@ -92,9 +104,10 @@ public class LeagueSnake extends PApplet {
     void move() {
         // Change the location of the Snake head based on the direction it is moving.
 
-        /*
+        
         if (direction == UP) {
             // Move head up
+        	segment.x += 20;
             
         } else if (direction == DOWN) {
             // Move head down
@@ -104,7 +117,7 @@ public class LeagueSnake extends PApplet {
         } else if (direction == RIGHT) {
             
         }
-        */
+        
     }
 
     void checkBoundaries() {
